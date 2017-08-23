@@ -1,0 +1,27 @@
+{{extend 'layout.html'}}
+{{include}}
+<ul>
+      <li><a href="{{=URL('create_post')}}">Create Post</a></li>
+      <li><a href="{{=URL('viewallposts')}}">View All Posts</a></li>
+      <li><a href="{{=URL('viewmyposts')}}">View My Posts</a></li>
+      <li><a href="{{=URL('view_people')}}">View All Users</a></li>
+      <li><a href="{{=URL('home')}}">View My Profile</a></li>
+      <li><a href="{{=URL('update_my_info')}}">Edit My Profile</a></li>
+</ul>
+
+
+<h2> All People </h2>
+{{if len(a) == 0 :}}
+  	No People
+{{pass}} 
+<table>
+	{{ for k in a : }}
+	<tr>
+		<td>
+			<a href = "homepage/{{=k.id}}">
+			 {{=k.first_name}}&nbsp;&nbsp;{{=k.last_name}}</a>
+		</td>
+	</tr>
+	{{pass}}
+</table>
+

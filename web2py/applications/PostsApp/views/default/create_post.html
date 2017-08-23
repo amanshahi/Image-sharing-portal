@@ -1,0 +1,17 @@
+{{extend 'layout.html'}}
+{{include}}
+<ul>
+      <li class="active"><a href="{{=URL('create_post')}}">Create Post</a></li>
+      <li><a href="{{=URL('viewallposts')}}">View All Posts</a></li>
+      <li><a href="{{=URL('viewmyposts')}}">View My Posts</a></li>
+      <li><a href="{{=URL('view_people')}}">View All Users</a></li>
+      <li><a href="{{=URL('home')}}">View My Profile</a></li>
+      <li><a href="{{=URL('update_my_info')}}">Edit My Profile</a></li>
+</ul>
+
+<h2>Create a Post</h2>
+<fieldset style="border:1px solid DarkGray;padding: 1em;">
+	<div style="width: 100px;">
+      	{{=form}}
+	</div>
+</fieldset>

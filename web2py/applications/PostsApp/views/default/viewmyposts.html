@@ -1,0 +1,53 @@
+{{extend 'layout.html'}}
+{{include}}
+<ul>
+      <li class="active"><a href="{{=URL('create_post')}}">Create Post</a></li>
+      <li><a href="{{=URL('viewallposts')}}">View All Posts</a></li>
+      <li><a href="{{=URL('viewmyposts')}}">View My Posts</a></li>
+      <li><a href="{{=URL('view_people')}}">View All Users</a></li>
+      <li><a href="{{=URL('home')}}">View My Profile</a></li>
+      <li><a href="{{=URL('update_my_info')}}">Edit My Profile</a></li>
+</ul>
+
+
+<h2> My Posts </h2>
+{{if len(p) == 0 :}}
+    No Recent Posts
+{{pass}} 
+
+
+
+<ol>
+
+{{for i in p:}}
+	<li>
+	&nbsp;&nbsp;&nbsp;&nbsp;{{=i['post_text']}}
+	&nbsp;&nbsp;&nbsp;<a href="{{=URL(r=request,f='delpost?pid={0}&prev={1}' .format(i['id'],'viewallposts'))}}">Delete</a>
+	&nbsp;&nbsp;&nbsp;<a href="{{=URL(r=request,f='editpost?pid={0}&prev={1}' .format(i['id'],'viewallposts'))}}">Edit</a>
+	
+
+	&nbsp;&nbsp;&nbsp;				
+	<span class="i">
+	  On {{=i.created_on}}
+	</span><br />
+	<br />
+	Comments : <br/>
+	<form action="post2" method="post" id="1">
+	  <textarea name="comment" placeholder="Your comment here" form="1"></textarea>
+	  <input type="hidden" name="pid" value={{=i['id']}}>
+	  <input type="submit" value="Submit">
+	</form>
+	<br />
+	{{for post in comments:}}
+		{{if post['postid'] == i['id']:}}
+			<div class="post" style="background-color: #E0E0E0;">
+			  On {{=post.created_on}} <a href = "homepage/{{=i.created_by}}">{{=post.created_by.first_name}}</a>
+			      says <span class="post_body">{{=post.body}}</span>
+		          </div>
+		         <br /> 
+		{{pass}}
+	{{pass}}
+	</li>
+{{pass}}
+</ol>
+
